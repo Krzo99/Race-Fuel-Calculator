@@ -3,20 +3,19 @@ import numpy as np
 
 # Calculate Best race strategy!
 # User Input
-raceLength = 150               # In Min
-fuelCapacity = 120             # In Liters
-pitDelay = 60                  # In Seconds
+raceLength = 180               # In Min
+fuelCapacity = 106             # In Liters
+pitDelay = 17 + 40             # In Seconds
 
-avgLapTimeM1 = 1*60+45         # In Seconds
-avgLapTimeM2 = 1*60+47         # In Seconds
+avgLapTimeM1 = 1*60 + 31.8     # In Seconds
+avgLapTimeM2 = 1*60 + 32.3     # In Seconds
 
-fuelPerLapM1 = 2.9             # In Liters
-fuelPerLapM2 = 2.75            # In Liters
+fuelPerLapM1 = 2.78            # In Liters
+fuelPerLapM2 = 2.52            # In Liters
 
 numOfPointsToCalc = 300        # In Ints
 
 # End Of User Input
-
 
 def timeDriven(Nm1, Nm2):
     return avgLapTimeM1 * Nm1 + avgLapTimeM2 * Nm2 + np.floor((Nm1 * fuelPerLapM1 + Nm2 * fuelPerLapM2) / fuelCapacity) * pitDelay
@@ -50,8 +49,6 @@ for fm1 in range(len(lapsM1_array)):
         bTimeValid = isTimeValid(timeDriven(lapsM1_array[fm1], lapsM2_array[fm2]),
                                  avgLapTime(lapsM1_array[fm1], lapsM2_array[fm2]))
         if bTimeValid == 0:
-            #X[fm2, fm1] = 0
-            #Y[fm2, fm1] = 0
             Z[fm2, fm1] = np.nan
         else:
             Z[fm2, fm1] = numOfLaps(lapsM1_array[fm1], lapsM2_array[fm2])
